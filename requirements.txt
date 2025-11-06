@@ -1,0 +1,4 @@
+dash==2.14.2
+gunicorn==21.2.0
+pandas==2.2.0
+folium==0.14.0
