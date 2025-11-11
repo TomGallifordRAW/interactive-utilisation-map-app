@@ -231,72 +231,81 @@ app = dash.Dash(__name__)
 app.title = "EV Charging Performance Map"
 
 app.layout = html.Div([
-    html.H2("EV Charger Performance Map"),
     html.Div([
-        html.Label('Venue Type'),
-        dcc.Dropdown(
-            id='venue_filter',
-            options=[{'label': v, 'value': v} for v in venue_list],
-            placeholder='Select Venue Type',
-            clearable=True,
-            multi=True
-        ),
-        html.Label('Charger Type'),
-        dcc.Dropdown(
-            id='charger_filter',
-            options=[{'label': c, 'value': c} for c in charger_list],
-            placeholder='Select Charger Type',
-            clearable=True,
-            multi=True
-        ),
-        html.Label('Account'),
-        dcc.Dropdown(
-            id='account_filter',
-            options=[{'label': a, 'value': a} for a in account_list],
-            placeholder='Select Account',
-            clearable=True,
-            multi=True
-        ),
-        html.Label('Location'),
-        dcc.Dropdown(
-            id='location_filter',
-            options=[{'label': l, 'value': l} for l in location_list],
-            placeholder='Select Location',
-            clearable=True,
-            multi=True
-        ),
-        html.Label('Number of Ports'),
-        dcc.Dropdown(
-            id='port_filter',
-            options=[{'label': n, 'value': n} for n in port_list],
-            placeholder='Select Number of Ports',
-            clearable=True,
-            multi=True
-        ),
-        html.Label('Parameter for Performance Comparison'),
-        dcc.Dropdown(
-            id='parameter_filter',
-            options=[
-                {'label': 'Sessions/port/day', 'value': 'Sessions/port/day'},
-                {'label': 'Energy Throughput/port/day (kWh)', 'value': 'Energy Throughput/port/day (kWh)'},
-                {'label': 'Energy Utilisation (%)', 'value': 'Energy Utilisation (%)'},
-                {'label': 'Net Rev Exc. VAT/port/day', 'value': 'Net Rev Exc. VAT/port/day'}
-            ],
-            placeholder='(Optional) Select a parameter to color markers by performance',
-            clearable=True
-        ),
-        html.Button('Apply Filters', id='apply_button', n_clicks=0)
-    ], style={
-        'width': '25%',
-        'float': 'left',
-        'padding': '15px',
-        'backgroundColor': '#f7f7f7',
-        'borderRight': '2px solid #ddd'
-    }),
+        html.Div("RAW CHARGING", className="header-title"),
+        html.Div("EV Charger Performance Dashboard", className="header-subtitle"),
+        html.Div("CONNECTING AMAZING PLACES", className="header-tagline"),
+    ], className="header"),
     html.Div([
-        html.Iframe(id='map', srcDoc="", width='100%', height='700')
-    ], style={'width': '70%', 'display': 'inline-block', 'marginLeft': '30px'})
+        html.Div([
+            html.Div([
+                html.Label('Venue Type'),
+                dcc.Dropdown(
+                    id='venue_filter',
+                    options=[{'label': v, 'value': v} for v in venue_list],
+                    placeholder='Select Venue Type',
+                    clearable=True,
+                    multi=True
+                ),
+                html.Label('Charger Type'),
+                dcc.Dropdown(
+                    id='charger_filter',
+                    options=[{'label': c, 'value': c} for c in charger_list],
+                    placeholder='Select Charger Type',
+                    clearable=True,
+                    multi=True
+                ),
+                html.Label('Account'),
+                dcc.Dropdown(
+                    id='account_filter',
+                    options=[{'label': a, 'value': a} for a in account_list],
+                    placeholder='Select Account',
+                    clearable=True,
+                    multi=True
+                ),
+                html.Label('Location'),
+                dcc.Dropdown(
+                    id='location_filter',
+                    options=[{'label': l, 'value': l} for l in location_list],
+                    placeholder='Select Location',
+                    clearable=True,
+                    multi=True
+                ),
+                html.Label('Number of Ports'),
+                dcc.Dropdown(
+                    id='port_filter',
+                    options=[{'label': n, 'value': n} for n in port_list],
+                    placeholder='Select Number of Ports',
+                    clearable=True,
+                    multi=True
+                ),
+                html.Label('Performance Parameter'),
+                dcc.Dropdown(
+                    id='parameter_filter',
+                    options=[
+                        {'label': 'Sessions/port/day', 'value': 'Sessions/port/day'},
+                        {'label': 'Energy Throughput/port/day (kWh)', 'value': 'Energy Throughput/port/day (kWh)'},
+                        {'label': 'Energy Utilisation (%)', 'value': 'Energy Utilisation (%)'},
+                        {'label': 'Net Rev Exc. VAT/port/day', 'value': 'Net Rev Exc. VAT/port/day'}
+                    ],
+                    placeholder='Select parameter to colour markers',
+                    clearable=True
+                ),
+                html.Div([
+                    html.Button('Apply Filters', id='apply_button', n_clicks=0)
+                ], className="button-row")
+            ])
+        ], className="filter-panel", style={'width': '30%'}),
+        html.Div([
+            html.Iframe(id='map', srcDoc="", width='100%')
+        ], className="map-panel", style={'display': 'inline-block', 'verticalAlign': 'top'})
+    ], className="main-content", style={
+        'display': 'flex',
+        'flexDirection': 'row',
+        'justifyContent': 'space-between'
+    })
 ])
+
 
 ###############################################################
 # STEP 4: DEFINE CALLBACK FOR FILTERING MAP VIEW

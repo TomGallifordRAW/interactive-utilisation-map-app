@@ -1,0 +1,129 @@
+:root {
+  --primary-blue: #0052A5;
+  --accent-blue: #0075DB;
+  --light-gray: #F5F7FA;
+  --dark-gray: #333333;
+  --radius: 8px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--light-gray);
+}
+
+.header {
+  background: var(--primary-blue);
+  color: white;
+  padding: 24px 32px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header-title {
+  font-size: 2.1em;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 2px;
+}
+
+.header-subtitle {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.header-tagline {
+  font-size: 1em;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.filter-panel {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin: 16px;
+  min-width: 230px;
+}
+
+.filter-panel label {
+  font-weight: 500;
+  margin-top: 16px;
+  color: var(--primary-blue);
+  margin-bottom: 5px;
+  display: block;
+}
+
+.filter-panel .dash-dropdown {
+  margin-bottom: 10px;
+}
+
+.button-row {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+}
+
+#apply_button {
+  background: var(--primary-blue);
+  color: white;
+  border-radius: var(--radius);
+  border: none;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+#apply_button:hover {
+  background: var(--accent-blue);
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    flex-direction: column !important;
+  }
+  .filter-panel, .map-panel {
+    width: 100% !important;
+    margin: 16px 0;
+  }
+  .map-panel {
+    height: 500px !important;
+  }
+}
+
+.map-panel {
+  width: 67%;
+  margin-left: 0;
+  height: 700px;
+  padding: 10px 0;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 12px 4vw;
+    font-size: 0.95em;
+  }
+  .map-panel {
+    padding: 0;
+    margin: 0;
+    width: 100vw !important;
+    min-height: 65vw;
+  }
+  #map {
+    min-height: 360px;
+    height: 65vh !important;
+    border-radius: 0 0 12px 12px;
+  }
+  .filter-panel {
+    padding: 9px;
+    min-width: 0;
+    margin-bottom: 0;
+  }
+}
