@@ -398,10 +398,11 @@ def update_map(n_clicks, venue, charger, account, location, number_of_ports, par
 ###############################################################
 # STEP 5: RUN THE APP
 ###############################################################
+server = app.server
 
 if __name__ == '__main__':
     # Get port from environment variable (Azure sets PORT env var)
-    port = int(os.environ.get('PORT', 8053))
+    port = int(os.environ.get('PORT', 8000))
     
     # Set debug=False for production
     app.run(debug=False, host='0.0.0.0', port=port)
